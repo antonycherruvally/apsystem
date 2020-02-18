@@ -85,6 +85,15 @@ $(function(){
     autoclose: true,
     format: 'yyyy-mm-dd'
   })
+ $('#datepicker_yearadd').datepicker({
+  format: "mm-yyyy",
+    viewMode: "months", 
+    minViewMode: "months"
+  })
+        
+//   $(function() {
+//    $( "#datepicker_year" ).datepicker({dateFormat: 'yy',  changeYear: true,  changeMonth: false});
+// });      
 
   //Timepicker
   $('.timepicker').timepicker({
