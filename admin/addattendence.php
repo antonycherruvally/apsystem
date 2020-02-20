@@ -15,6 +15,11 @@
     	<h4 class="login-box-msg">Select Employee</h4>
 
     	<form id="attendance">
+        <div class="form-group">
+          <div class="date">
+                      <input type="text" class="form-control  input-sm box-header with-border" id="datepicker_add" name="date" placeholder="Select Date" required>
+                  </div>
+        </div>
           <div class="form-group">
              <select class="form-control" name="status">
              <?php
@@ -56,7 +61,7 @@
   		
 </div>
  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/employee_modal.php'; ?>
+  
 </div>
 <?php include 'includes/scripts.php'; ?>
 	

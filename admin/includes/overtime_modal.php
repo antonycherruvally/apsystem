@@ -10,12 +10,24 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="overtime_add.php">
           		  <div class="form-group">
-                  	<label for="employee" class="col-sm-3 control-label">Employee ID</label>
+                  	<label for="employee" class="col-sm-3 control-label">Employee Name</label>
+                        <div class="col-sm-9"> 
+                  	       <select class="form-control" name="overtime_emp">
+                             <?php
+                                 $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id";
+                                     $query = $conn->query($sql);
+                                        while($row = $query->fetch_assoc()){
+                               ?>
+           
+                            <option value="<?php echo $row['empid']; ?>"><?php echo $row['firstname'].' '.$row['lastname']; ?></option>
+             
+                           <?php 
+                              }
+                               ?>
 
-                  	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="employee" name="employee" required>
-                  	</div>
-                </div>
+                            </select>
+                        </div>
+                      </div>
                 <div class="form-group">
                     <label for="datepicker_add" class="col-sm-3 control-label">Date</label>
 
@@ -32,20 +44,20 @@
                     	<input type="text" class="form-control" id="hours" name="hours">
                   	</div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   	<label for="mins" class="col-sm-3 control-label">No. of Mins</label>
 
                   	<div class="col-sm-9">
                     	<input type="text" class="form-control" id="mins" name="mins">
                   	</div>
-                </div>
-                 <div class="form-group">
+                </div> -->
+                 <!-- <div class="form-group">
                     <label for="rate" class="col-sm-3 control-label">Rate</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="rate" name="rate" required>
                     </div>
-                </div>
+                </div> -->
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -84,20 +96,20 @@
                       <input type="text" class="form-control" id="hours_edit" name="hours">
                     </div>
                 </div>
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <label for="mins_edit" class="col-sm-3 control-label">No. of Mins</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="mins_edit" name="mins">
                     </div>
-                </div>
-                 <div class="form-group">
+                </div> -->
+                 <!-- <div class="form-group">
                     <label for="rate_edit" class="col-sm-3 control-label">Rate</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="rate_edit" name="rate" required>
                     </div>
-                </div>
+                </div> -->
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>

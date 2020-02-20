@@ -54,10 +54,10 @@
                 <thead>
                   <th class="hidden"></th>
                   <th>Date</th>
-                  <th>Employee ID</th>
+                 <!--  <th>Employee ID</th> -->
                   <th>Name</th>
                   <th>No. of Hours</th>
-                  <th>Rate</th>
+                  <!-- <th>Rate</th> -->
                   <th>Tools</th>
                 </thead>
                 <tbody>
@@ -69,10 +69,10 @@
                         <tr>
                           <td class='hidden'></td>
                           <td>".date('M d, Y', strtotime($row['date_overtime']))."</td>
-                          <td>".$row['empid']."</td>
+                          
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
                           <td>".$row['hours']."</td>
-                          <td>".$row['rate']."</td>
+                          
                           <td>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['otid']."'><i class='fa fa-edit'></i> Edit</button>
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['otid']."'><i class='fa fa-trash'></i> Delete</button>
@@ -101,6 +101,7 @@ $(function(){
     $('#edit').modal('show');
     var id = $(this).data('id');
     getRow(id);
+
   });
 
   $('.delete').click(function(e){

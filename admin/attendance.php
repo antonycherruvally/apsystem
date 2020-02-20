@@ -44,10 +44,12 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
+
           <div class="box">
-            <div class="box-header with-border">
-              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> New</a>
-            </div>
+            <!-- <div class="box-header with-border">
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat btnnew"><i class="fa fa-plus"></i> New</a>
+            </div> -->
+           
             <div class="box-header with-border">
                   <label for="datepicker_add" class="col-sm-3 control-label">Select Month</label>
               <div class="col-sm-6"> 
@@ -55,18 +57,20 @@
                       <input type="text" class="form-control  input-sm box-header with-border" id="datepicker_yearadd" name="date" required>
                   </div>
                 </div>
-             <button type="submit" class="btn btn-primary btn-flat" name="add" id="monthselect"><i class="fa fa-save"></i> Save</button>
+             <button type="submit" class="btn btn-primary btn-flat" name="add" id="monthselect"><i class="fa fa-save"></i> Select</button>
+              <button type="button" class="btn btn-success btn-sm btn-flat pdfbtn" id="payroll" style="display: none;float: right;
+                margin-right: 24px;"><span class="glyphicon glyphicon-print"></span> Print</button>
             </div>
-            <div class="box-body">
+            <div class="box-body tableresult">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
                   <th>Date</th>
                  <!--  <th>Employee ID</th> -->
                   <th>Name</th>
-                  <th>Overtime Total/hr</th>
-                  <th>No of Presents</th>
-                  <th>No of Absents</th>
+                
+                  <th>Status</th>
+                  
                   <!-- <th>Time Out</th> -->
                   <th>Tools</th>
                 </thead>
@@ -85,8 +89,8 @@
                           <td>".date('M d, Y', strtotime($row['date']))."</td>
                           
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
-                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
+                          
+                          
                           <td>".$row['status']."</td>
                           <td>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['attid']."'><i class='fa fa-edit'></i> Edit</button>
@@ -113,14 +117,15 @@
 $(function(){
   $('.edit').click(function(e){
     e.preventDefault();
-    $('#edit').modal('show');
+    $('#editattendance').modal('show');
     var id = $(this).data('id');
+    //alert(id);
     getRow(id);
   });
 
   $('.delete').click(function(e){
     e.preventDefault();
-    $('#delete').modal('show');
+    $('#deleteattendance').modal('show');
     var id = $(this).data('id');
     getRow(id);
   });
@@ -133,20 +138,26 @@ $(function(){
          type: 'POST',
           url: 'attendance_selectmonth.php',
          data: {dates:dates},
-         dataType: 'json',
-        success: function(response){
-         $('#datepicker_edit').val(response.date);
-          $('#attendance_date').html(response.date);
-          $('#edit_time_in').val(response.time_in);
-         $('#edit_time_out').val(response.time_out);
-          $('#attid').val(response.attid);
-          $('#employee_name').html(response.firstname+' '+response.lastname);
-          $('#del_attid').val(response.attid);
-          $('#del_employee_name').html(response.firstname+' '+response.lastname);
+         
+        success: function(data){
+          
+          $(".box-body").addClass("dataadd")
+          $('.pdfbtn').show();
+          $('.btnnew').hide();
+           $(".tableresult").html(data);
+          $('#example1').show();
+         
+
          }
        });
-   });
+        $('.pdfbtn').click(function(e){
+   window.location = "attendancepdf.php?data="+dates;  
  });
+   });
+
+ });
+
+
 function getRow(id){
   $.ajax({
     type: 'POST',

@@ -8,6 +8,7 @@
 		//$employee = $_POST['employee'];
 		$status = $_POST['status'];
 		$day = $_POST['daystatus'];
+		$date_now = $_POST['date'];
 		//$id = $_POST['status'];
 		
 //
@@ -19,7 +20,7 @@
 			$row = $query->fetch_assoc();
 		  // $id = $row['id'];
           //   echo $id;
-			$date_now = date('Y-m-d');
+			//$date_now = date('Y-m-d');
 
 			
 				$sql = "SELECT * FROM attendance WHERE employee_id = '$status' AND date = '$date_now' AND time_in IS NOT NULL";

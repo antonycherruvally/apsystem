@@ -85,8 +85,12 @@ $(function(){
     autoclose: true,
     format: 'yyyy-mm-dd'
   })
+   $('#datepicker_edit1').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd'
+  })
  $('#datepicker_yearadd').datepicker({
-  format: "mm-yyyy",
+  format: "yyyy-mm",
     viewMode: "months", 
     minViewMode: "months"
   })
